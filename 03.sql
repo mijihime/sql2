@@ -5,6 +5,9 @@ desc dual
 select *
 from dual; --레코드가 리턴 됨. 필드가 하나만 있음.
 
+select *
+from employees;
+
 --lower은 소문자로 바꿔줌
 select lower('SQL Course')
 from dual; --from까지는 써줘야해서 dual을 그냥 써줌..?
