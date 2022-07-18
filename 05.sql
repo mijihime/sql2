@@ -152,8 +152,3 @@ select job_id, sum(decode(department_id, 20, salary)) "20",
     sum(decode(department_id, 80, salary)) "80"
 from employees
 group by job_id;
-
-select hire_date, 
-    case when to_char(hire_date) like '2001%' then '2001' 
-    end hire_year
-from employees;
