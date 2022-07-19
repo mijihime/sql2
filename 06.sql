@@ -67,7 +67,7 @@ where e.manager_id = 100;
 select e.employee_id, e.last_name, e.department_id,
     d.department_id, d.location_id
 from employees e join departments d
-on (e.department_id = d.department_id);
+on e.department_id = d.department_id;
 
 select employee_id, city, department_name
 from employees e join departments d
@@ -136,3 +136,75 @@ select c.last_name, c.hire_date
 from employees e join employees c
 on e.hire_date < c.hire_date
 where e.last_name = 'Davies';
+
+-- 과제] 매니저보다 먼저 입사한 사원들의 이름, 입사일, 매니저명, 매니저 입사일을 조회하라.
+select e.last_name e_name, e.hire_date e_hiredate, m.last_name m_name, m.hire_date m_hiredate
+from employees e join employees m
+on e.manager_id = m.employee_id
+where e.hire_date < m.hire_date;
+---------------------------------
+
+select e.last_name, e.department_id, d.department_name
+from employees e join departments d
+on e.department_id = d.department_id;
+
+--부서가 없는 직원 포함
+select e.last_name, e.department_id, d.department_name
+from employees e left outer join departments d
+on e.department_id = d.department_id;
+
+--직원이 없는 부서 포함
+select e.last_name, e.department_id, d.department_name
+from employees e right outer join departments d
+on e.department_id = d.department_id;
+
+--다포함
+select e.last_name, e.department_id, d.department_name
+from employees e full outer join departments d
+on e.department_id = d.department_id;
+
+-- 과제] 사원들의 이름, 사번, 매니저명, 매니저의 사번을 조회하라.
+-- king 사장도 테이블에 포함한다.
+select e.last_name e_name, e.employee_id e_id, m.last_name m_name, m.employee_id m_id
+from employees e left outer join employees m
+on e.manager_id = m.employee_id
+order by 2; 
+
+--------------------------------------
+select d.department_id, d.department_name, d.location_id, l.city
+from departments d, locations l
+where d.location_id = l.location_id;
+
+select d.department_id, d.department_name, d.location_id, l.city
+from departments d, locations l
+where d.location_id = l.location_id
+and d.department_id in(20, 50);
+
+select e.last_name, d.department_name, l.city
+from employees e, departments d, locations l
+where e.department_id = d.department_id
+and d.location_id = l.location_id;
+
+select e.last_name, e.salary, e.job_id
+from employees e, jobs j
+where e.salary between j.min_salary and j.max_salary
+and j.job_id = 'IT_PROG';
+
+select e.last_name, e.department_id, d.department_name
+from employees e, departments d
+where e.department_id(+) = d.department_id;
+--right out join
+
+select e.last_name, e.department_id, d.department_name
+from employees e, departments d
+where e.department_id = d.department_id(+);
+-- left out join
+
+select e.last_name, e.department_id, d.department_name
+from employees e, departments d
+where e.department_id(+) = d.department_id(+);
+--error full out join은 없음
+
+select worker.last_name || ' works for ' || manager.last_name
+from employees worker, employees manager
+where worker.manager_id = manager.employee_id;
