@@ -71,6 +71,8 @@ where salary >= (select avg(salary)
                         from employees)
 order by salary desc;
 ---------------------
+--서브쿼리에서 in, any, all이 아닌이상 리턴값은 하나~~여야 해요
+--any = in
 
 select employee_id, last_name
 from employees
@@ -84,6 +86,7 @@ from employees
 where salary in (select min(salary)
                  from employees
                  group by department_id); 
+-- 서브쿼리가 그룹펑션이라도 리턴값은 in, any, all이 아니고선 하나만 나옴
 
 select employee_id, last_name
 from employees
@@ -180,7 +183,8 @@ from departments d
 where exists (select * 
                 from employees e
                 where e.department_id = d.department_id);
-                
+ --테이블이 존재하니~?를 물어보는거
+ 
 select count(*)
 from departments d
 where not exists (select * 

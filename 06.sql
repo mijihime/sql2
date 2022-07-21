@@ -171,6 +171,7 @@ on e.manager_id = m.employee_id
 order by 2; 
 
 --------------------------------------
+--20세기 문법
 select d.department_id, d.department_name, d.location_id, l.city
 from departments d, locations l
 where d.location_id = l.location_id;

@@ -1,4 +1,6 @@
 -- set (합집합 교집합 등을 얘기함.
+-- 우아래 데이터 타입이 같아야 한다.
+
 select employee_id, job_id
 from employees
 union
