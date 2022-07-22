@@ -190,3 +190,5 @@ from departments d
 where not exists (select * 
                 from employees e
                 where e.department_id = d.department_id);
+                
+

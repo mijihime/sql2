@@ -142,3 +142,21 @@ where rowid = 'AAAEAbAAEAAAADNAAX';
 
 select index_name, index_type, table_owner, table_name
 from user_indexes;
+
+-- 과제] DEPT 테이블의 DEPARTMENT_NAME 에 대해 index 를 만들어라.
+create index dept_department_name_idx
+on dept(department_name);
+-----------------------
+drop synonym team;
+
+create synonym team
+for departments;
+
+select * from team;
+
+-- 과제] EMPLOYEES 테이블에 EMPS synonym을 만들어라
+drop synonym team;
+create synonym emps
+for employees;
+
+select * from emps;
